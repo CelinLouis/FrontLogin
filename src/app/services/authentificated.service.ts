@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { map, Observable } from 'rxjs';
+import { AuthHeaderService } from './auth-header.service';
 
 
 const baseUrl = 'http://127.0.0.1:8000';
@@ -14,7 +15,7 @@ const httpHeaders = new HttpHeaders({
 })
 export class AuthentificatedService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private autheard: AuthHeaderService) { }
 
   signin(data: any): Observable<any> {
     return this.http.post(baseUrl + '/signin/', data,
@@ -33,5 +34,17 @@ export class AuthentificatedService {
     )
     ;
   }
+
+  logout(data: any): Observable<any>{
+    return this.http.post<any>(baseUrl + '/logout/',data,
+    {headers: this.autheard.headers()});
+  }
+
+
+
+  profil(): Observable<any> {
+    return this.http.get(baseUrl + '/profil/',
+    {headers: this.autheard.headers()});
+  } 
 
 }

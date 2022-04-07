@@ -7,7 +7,9 @@
     <button routerLink="/signin" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>favorite</mat-icon>
     </button>
-    <button routerLink="/login" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>share</mat-icon>
     </button>
   </mat-toolbar>
+
+  <mat-card><h1>Welcome <mark>{{data.user}}</mark></h1></mat-card>

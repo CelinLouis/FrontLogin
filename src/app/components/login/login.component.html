@@ -14,7 +14,7 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Username</mat-label>
-      <input type="text" [(ngModel)]="user.username" matInput [formControl]="usernameFormControl" placeholder="Ex. pat@example.com">
+      <input type="text" [(ngModel)]="user.username" matInput [formControl]="usernameFormControl" placeholder="Your Username">
       <mat-error *ngIf="usernameFormControl.hasError('maxLength') && !usernameFormControl.hasError('required')">
         Username should be 8 character.
       </mat-error>
@@ -25,7 +25,7 @@
   
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Password</mat-label>
-      <input type="password" [(ngModel)]="user.password" matInput [formControl]="passwordFormControl" placeholder="Ex. pat@example.com">
+      <input type="password" [(ngModel)]="user.password" matInput [formControl]="passwordFormControl" placeholder="Your Password">
       <mat-error *ngIf="passwordFormControl.hasError('maxLength') && !passwordFormControl.hasError('required')">
         Please enter a valid password 
       </mat-error>

@@ -5,3 +5,20 @@
 mat-grid-tile {
   background: lightblue;
 }
+
+.body{
+  margin: 28px;
+}
+
+ul{
+  display: inline-flex;
+  flex-direction: row;
+}
+
+ul li {
+  margin-left: 85px;
+}
+
+ul li h3 {
+  text-decoration: underline;
+}

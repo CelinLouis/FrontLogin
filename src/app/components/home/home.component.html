@@ -2,7 +2,7 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>My App</span>
+    <span>{{data.username}}</span>
     <span class="example-spacer"></span>
     <button routerLink="/signin" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>favorite</mat-icon>
@@ -12,4 +12,15 @@
     </button>
   </mat-toolbar>
 
-  <mat-card><h1>Welcome <mark>{{data.user}}</mark></h1></mat-card>
+  <mat-card class="body">
+    <h2>Profil</h2>
+    <ul>
+      <li><h3>Last Name : </h3><mark>{{data.last_name}}</mark></li>
+      <li><h3>First Name : </h3><mark>{{data.first_name}}</mark></li>
+      <li><h3>E-mail : </h3><mark>{{data.email}}</mark></li>
+    </ul>
+    <div class="example-button-row">
+      <a mat-raised-button color="primary" routerLink="/profil" >Edit</a>
+      <button mat-raised-button color="warn">Delete</button>
+    </div>
+  </mat-card>

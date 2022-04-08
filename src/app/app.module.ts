@@ -42,13 +42,15 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { ProfilComponent } from './components/profil/profil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

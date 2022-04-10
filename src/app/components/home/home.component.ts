@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthentificatedService } from 'src/app/services/authentificated.service';
+import {MatDialog} from '@angular/material/dialog';
+import { ProfilComponent } from '../profil/profil.component';
+import { AlerteComponent } from '../alerte/alerte.component';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 export interface Tile {
   color: string;
@@ -9,6 +14,13 @@ export interface Tile {
   text: string;
 }
 
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 
 @Component({
@@ -17,6 +29,9 @@ export interface Tile {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
+  matcher = new MyErrorStateMatcher();
 
   tiles: Tile[] = [
     {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
@@ -27,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   data: any=[];
 
-  constructor(private service: AuthentificatedService, private router: Router) { }
+  constructor(private service: AuthentificatedService, private router: Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProfil();
@@ -59,4 +74,17 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(ProfilComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openAlert() {
+    this.dialog.open(AlerteComponent);
+  }
+
 }
+

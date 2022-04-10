@@ -43,6 +43,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { ProfilComponent } from './components/profil/profil.component';
+import { AlerteComponent } from './components/alerte/alerte.component';
+import { ConfirmerComponent } from './components/confirmer/confirmer.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { ProfilComponent } from './components/profil/profil.component';
     SigninComponent,
     LoginComponent,
     HomeComponent,
-    ProfilComponent
+    ProfilComponent,
+    AlerteComponent,
+    ConfirmerComponent
   ],
   imports: [
     BrowserModule,

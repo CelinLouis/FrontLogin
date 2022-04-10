@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
     password : '',
     username : ''
   }
-
+  loading = false;
 
 
   constructor(private service: AuthentificatedService, private router: Router) { }
@@ -47,13 +47,12 @@ export class SigninComponent implements OnInit {
    * sign_in
    */
   signin(): void {
-    console.log("submit");
+    this.loading = true;
      const data = {
       'email': this.user.email,
       'password': this.user.password,
       'username': this.user.username
     }
-    console.log(data)
     this.service.signin(data)
     .subscribe(
       (response) => {

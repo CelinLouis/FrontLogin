@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user.model';
 import { AuthentificatedService } from 'src/app/services/authentificated.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    this.loading = true;
      const data = {
       //'email': this.user.email,
       'password': this.user.password,
@@ -49,5 +51,8 @@ export class LoginComponent implements OnInit {
         console.log(error);
       });
   }
+
+  loading = false;
+
 
 }

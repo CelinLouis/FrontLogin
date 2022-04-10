@@ -34,11 +34,14 @@
       </mat-error>
     </mat-form-field>
     <div class="example-button-row">
-        <button mat-raised-button color="primary" [disabled]="passwordFormControl.invalid || usernameFormControl.invalid">Sign Up</button>
+        <button mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading || passwordFormControl.invalid || usernameFormControl.invalid">
+          Sign Up <mat-icon>login</mat-icon>
+        </button>
     </div>
     <div class="example-button-row">
       <p>If you did not have an account...</p>
       <a mat-raised-button color="warn" routerLink="/signin" >Sign In</a>
     </div>
   </form>
+
   </mat-card>

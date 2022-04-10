@@ -1,26 +1,101 @@
 <mat-toolbar color="primary">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
+      <mat-icon>home</mat-icon>
     </button>
     <span>{{data.username}}</span>
     <span class="example-spacer"></span>
-    <button routerLink="/signin" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
     <button (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+      <mat-icon>power_settings_new</mat-icon>
     </button>
   </mat-toolbar>
 
+
+
   <mat-card class="body">
-    <h2>Profil</h2>
-    <ul>
-      <li><h3>Last Name : </h3><mark>{{data.last_name}}</mark></li>
-      <li><h3>First Name : </h3><mark>{{data.first_name}}</mark></li>
-      <li><h3>E-mail : </h3><mark>{{data.email}}</mark></li>
-    </ul>
-    <div class="example-button-row">
-      <a mat-raised-button color="primary" routerLink="/profil" >Edit</a>
-      <button mat-raised-button color="warn">Delete</button>
-    </div>
+    <mat-card-title>Profil <span class="material-icons">sentiment_satisfied_alt</span></mat-card-title>
+    <mat-card-subtitle>
+
+      <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Ex. Pizza" value="{{data.username}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Ex. Pizza" value="{{data.last_name}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="Ex. Pizza" value="{{data.first_name}}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                 placeholder="Ex. pat@example.com" value="{{data.email}}">
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+       <!--  <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="openDialog()" class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-raised-button color="warn" (click)="openAlert()" class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div> -->
+      </form>
+
+    </mat-card-subtitle>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="openDialog()" class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>save</mat-icon>
+      </button>
+      <button mat-raised-button color="warn" (click)="openAlert()" class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
   </mat-card>
+
+
+  <!-- <mat-card class="body">
+    <h2>Profil <span class="material-icons">sentiment_satisfied_alt</span></h2>
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="{{data.username}}">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="{{data.last_name}}">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="Ex. Pizza" value="{{data.first_name}}">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+               placeholder="Ex. pat@example.com" value="{{data.email}}">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="openDialog()" class="example-icon" aria-label="Example icon-button with share icon">
+          <mat-icon>save</mat-icon>
+        </button>
+        <button mat-raised-button color="warn" (click)="openAlert()" class="example-icon" aria-label="Example icon-button with share icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card> -->

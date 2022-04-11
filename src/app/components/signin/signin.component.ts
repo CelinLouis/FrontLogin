@@ -3,6 +3,8 @@ import {FormGroup,FormControl, Validators} from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { AuthentificatedService } from 'src/app/services/authentificated.service';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { ConfirmerComponent } from '../confirmer/confirmer.component';
 
 @Component({
   selector: 'app-signin',
@@ -38,9 +40,9 @@ export class SigninComponent implements OnInit {
     last_name: '',
   }
   loading = false;
+  durationInSeconds = 5;
 
-
-  constructor(private service: AuthentificatedService, private router: Router) { }
+  constructor(private service: AuthentificatedService, private router: Router,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -58,9 +60,13 @@ export class SigninComponent implements OnInit {
     this.service.signin(data)
     .subscribe(
       (response) => {
+        this._snackBar.openFromComponent(ConfirmerComponent, {
+          duration: this.durationInSeconds * 1000,
+          horizontalPosition: 'center'
+        });
         console.log(response);
         setTimeout(() => {
-          this.router.navigate(['home/']);
+          this.router.navigate(['/']);
         }, 3000);
       },
       error =>{

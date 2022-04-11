@@ -1,8 +1,62 @@
-<mat-toolbar color="primary">
+<!-- <ngx-skeleton-loader count="2" 
+   appearance="line" 
+   animation="progress" 
+   [theme]="{
+     'background-color': '#FFBF00',
+      height: '30px',
+     'border-radius': 0
+   }"></ngx-skeleton-loader> -->
+<!-- <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader> -->
+
+<!-- <h2>Skeleton loader examples</h2>
+<p>Circles with different animations - Progress, Progress Dark, and Pulse:</p>
+<ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+<ngx-skeleton-loader
+  count="1"
+  appearance="circle"
+  animation="progress-dark"
+></ngx-skeleton-loader>
+<ngx-skeleton-loader
+  count="1"
+  appearance="circle"
+  animation="pulse"
+></ngx-skeleton-loader>
+<p>2 lines with "progress" animation (default value):</p>
+<ngx-skeleton-loader count="2" appearance="line"></ngx-skeleton-loader>
+<p>2 lines with "progress-dark" animation:</p>
+<ngx-skeleton-loader
+  count="2"
+  appearance="line"
+  animation="progress-dark"
+></ngx-skeleton-loader>
+<p>2 lines with "pulse" animation:</p>
+<ngx-skeleton-loader
+  count="2"
+  appearance="line"
+  animation="pulse"
+></ngx-skeleton-loader>
+<p>2 lines with "progress" animation and custom theming:</p>
+<ngx-skeleton-loader
+  count="2"
+  appearance="line"
+  animation="progress"
+  [theme]="{
+    'background-color': '#FFBF00',
+    height: '30px',
+    'border-radius': 0
+  }"
+></ngx-skeleton-loader>
+ -->
+
+
+
+
+
+  <mat-toolbar color="primary">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>home</mat-icon>
     </button>
-    <span>{{data.username}}</span>
+    <span>{{user.username}}</span>
     <span class="example-spacer"></span>
     <button (click)="logout()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>power_settings_new</mat-icon>
@@ -15,23 +69,23 @@
     <mat-card-title>Profil <span class="material-icons">sentiment_satisfied_alt</span></mat-card-title>
     <mat-card-subtitle>
 
-      <form class="example-form">
+    <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Ex. Pizza" value="{{data.username}}">
+          <input matInput placeholder="Ex. Pizza" [(ngModel)]="user.username" name="user.username">
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Last Name</mat-label>
-          <input matInput placeholder="Ex. Pizza" value="{{data.last_name}}">
+          <input matInput placeholder="Ex. Pizza" [(ngModel)]="user.last_name" name="user.last_name">
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>First Name</mat-label>
-          <input matInput placeholder="Ex. Pizza" value="{{data.first_name}}">
+          <input matInput placeholder="Ex. Pizza" [(ngModel)]="user.first_name" name="user.first_name">
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Email</mat-label>
           <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                 placeholder="Ex. pat@example.com" value="{{data.email}}">
+                 placeholder="Ex. pat@example.com" [(ngModel)]="user.email" name="user.email">
           <mat-hint>Errors appear instantly!</mat-hint>
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Please enter a valid email address
@@ -40,6 +94,9 @@
             Email is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+      
+      </form>
+
        <!--  <div class="example-button-row">
           <button mat-raised-button color="primary" (click)="openDialog()" class="example-icon" aria-label="Example icon-button with share icon">
             <mat-icon>save</mat-icon>
@@ -48,16 +105,18 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div> -->
-      </form>
 
     </mat-card-subtitle>
     <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="openDialog()" class="example-icon" aria-label="Example icon-button with share icon">
+      <button mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading" (click)="save()" class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon>save</mat-icon>
       </button>
       <button mat-raised-button color="warn" (click)="openAlert()" class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon>delete</mat-icon>
       </button>
+      <!-- <button mat-raised-button color="warn"  class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>delete</mat-icon>
+      </button> -->
     </mat-card-actions>
   </mat-card>
 
@@ -99,3 +158,65 @@
       </div>
     </form>
   </mat-card> -->
+
+
+<!--   <div class="text-center">
+    <button class="btn btn-primary" (click)="loadItems()">Load Items</button>
+  </div>
+  
+  <div class="list-wrapper" *ngIf="dataList">
+  
+    <ul>
+  
+      <ng-container *ngIf="dataList.length; else elseTemplate">
+  
+        <li *ngFor="let item of dataList">
+          <div class="item-wrap">
+            <div class="item-img">
+              <img src="https://picsum.photos/100?img={{item.id}}" />
+            </div>
+            <div class="item-content">
+              <label>{{item.title}}</label>
+              <p>{{item.body}}</p>
+            </div>
+          </div>
+        </li>
+  
+      </ng-container>
+      <ng-template #elseTemplate>
+        <li class="skeleton" *ngFor="let item of generateFake(5)">
+          <div class="item-wrap">
+            <div class="item-img">
+              <ngx-skeleton-loader appearance="circle" [theme]="{ height: '100px',width: '100px'}"></ngx-skeleton-loader>
+            </div>
+            <div class="item-content">
+              <div>
+                <ngx-skeleton-loader></ngx-skeleton-loader>
+              </div>
+              <p>
+                <ngx-skeleton-loader [theme]="{ height: '30px'}"></ngx-skeleton-loader>
+              </p>
+            </div>
+          </div>
+        </li>
+  
+      </ng-template>
+  
+    </ul>
+  </div> -->
+
+<!--   <div style="background-color: #000; padding: 100px;">
+
+    <ngx-skeleton-loader count="5" animation="progress-dark"
+      [theme]="{'background-color': '#464646', height:'50px', 'border-radius':'20px'}">
+    </ngx-skeleton-loader>
+  
+  </div> -->
+
+
+<!--   <ngx-skeleton-loader 
+     count="5" 
+     [theme]="{'background-color': '#b5ffb8',  
+     height:'50px', 'border-radius':'20px'}"
+     >
+</ngx-skeleton-loader> -->

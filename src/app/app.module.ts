@@ -45,6 +45,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ProfilComponent } from './components/profil/profil.component';
 import { AlerteComponent } from './components/alerte/alerte.component';
 import { ConfirmerComponent } from './components/confirmer/confirmer.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ConfirmerComponent } from './components/confirmer/confirmer.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatCheckboxModule,
+    NgxSkeletonLoaderModule,
+        MatCheckboxModule,
         MatCheckboxModule,
         MatButtonModule,
         MatInputModule,

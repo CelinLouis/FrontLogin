@@ -47,4 +47,14 @@ export class AuthentificatedService {
     {headers: this.autheard.headers()});
   } 
 
+  update(data: any): Observable<any> {
+    return this.http.put(baseUrl + '/profil/',data,
+    {headers: this.autheard.headers()});
+  }
+
+  delete(): Observable<any> {
+    return this.http.delete(baseUrl + '/profil/',
+    {headers: this.autheard.headers()});
+  }
+
 }
